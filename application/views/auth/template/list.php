@@ -1,12 +1,14 @@
 <?php
 
-$auth_menu = $this->auth_menu_model->list();
-$active = '';
 
-if ($this->session->userdata('username') == '') {
+
+if ($this->session->userdata('email') == '') {
 
     redirect(base_url('auth/login'), 'refresh');
 }
+$auth_menu = $this->auth_menu_model->list();
+$active = '';
+$session = $this->auth_user_model->get($this->session->userdata('email'));
 
 ?>
 <!DOCTYPE html>
@@ -42,6 +44,7 @@ if ($this->session->userdata('username') == '') {
     <script src="<?= base_url('assets/sbadmin2/') ?>vendor/datatables/dataTables.bootstrap4.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.2.3/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule="" src="https://unpkg.com/ionicons@5.2.3/dist/ionicons/ionicons.js"></script>
+    <script src="//cdn.ckeditor.com/4.15.1/basic/ckeditor.js"></script>
 
 </head>
 
@@ -113,8 +116,8 @@ if ($this->session->userdata('username') == '') {
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $this->session->userdata('nama') ?></span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $session->nama ?></span>
+                                <img class="img-profile rounded-circle" src="<?= base_url('assets/img/auth/foto/thumb/cropped/'.$session->foto) ?>">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

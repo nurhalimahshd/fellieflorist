@@ -17,7 +17,7 @@ class login extends CI_Controller
     public function proses()
     {
         if ($this->input->is_ajax_request()) {
-            $this->form_validation->set_rules('username', 'Username', 'trim|required');
+            $this->form_validation->set_rules('email', 'Email', 'trim|required');
             $this->form_validation->set_rules('password', 'Password', 'trim|required');
 
 
@@ -30,17 +30,17 @@ class login extends CI_Controller
                 ];
             } else {
 
-                $username = $this->input->post('username');
+                $email = $this->input->post('email');
                 $password = MD5($this->input->post('password'));
 
                 $get = $this->db->get_where('auth_user', [
-                    'username'  => $username
+                    'email'  => $email
                 ])->row();
 
                 if ($get) {
                     if ($get->password == $password) {
                         $array = array(
-                            'username' => $get->username,
+                            'email' => $get->email,
                             'nama' => $get->nama,
                             'status'    => 'login'
                         );

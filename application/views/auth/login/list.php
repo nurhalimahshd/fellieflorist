@@ -1,5 +1,5 @@
 <?php
-if ($this->session->userdata('username') != '') {
+if ($this->session->userdata('email') != '') {
 
     redirect(base_url('auth/dashboard'), 'refresh');
 }
@@ -57,7 +57,7 @@ if ($this->session->userdata('username') != '') {
                                     </div>
                                     <form class="user">
                                         <div class="form-group">
-                                            <input type="text" id="username" class="form-control form-control-user" placeholder="Enter Username..." autocomplete="off">
+                                            <input type="email" id="email" class="form-control form-control-user" placeholder="Enter Email..." autocomplete="off">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" id="password" class="form-control form-control-user" placeholder="Password" autocomplete="off">
@@ -90,7 +90,7 @@ if ($this->session->userdata('username') != '') {
                 type: 'post',
                 dataType: 'json',
                 data: {
-                    username: $('input#username').val(),
+                    email: $('input#email').val(),
                     password: $('input#password').val()
                 },
                 success: function(data) {
