@@ -26,22 +26,35 @@ function form_open($nama)
     ';
 }
 
-function input_text($nama = '', $value = '', $label = '', $icon = '')
+function input_text($nama = '', $value = '', $label = '', $icon = '', $small = '')
 {
     return '
     <div class="form-group">
     <label for="' . $nama . '"><ion-icon name="' . $icon . '"></ion-icon> ' . $label . '</label>
     <input type="text" class="form-control" id="' . $nama . '" name="' . $nama . '" autocomplete="off" value="' . $value . '">
+    <small>'. $small .'</small>
     </div>
     ';
 }
 
-function input_textarea($nama = '', $value = '', $label = '', $icon = '')
+function input_number($nama = '', $value = '', $label = '', $icon = '', $small = '')
+{
+    return '
+    <div class="form-group">
+    <label for="' . $nama . '"><ion-icon name="' . $icon . '"></ion-icon> ' . $label . '</label>
+    <input type="number" class="form-control" id="' . $nama . '" name="' . $nama . '" autocomplete="off" value="' . $value . '">
+    <small>'. $small .'</small>
+    </div>
+    ';
+}
+
+function input_textarea($nama = '', $value = '', $label = '', $icon = '', $small = '')
 {
     return '
     <div class="form-group">
     <label for="' . $nama . '"><ion-icon name="' . $icon . '"></ion-icon> ' . $label . '</label>
     <textarea name="' . $nama . '" id="' . $nama . '" cols="30" rows="10">' . $value . '</textarea>
+    <small>'. $small .'</small>
     </div>
     ';
 }

@@ -31,7 +31,9 @@ $session = $this->auth_user_model->get($this->session->userdata('email'));
     <!-- Custom styles for this template-->
     <link href="<?= base_url('assets/sbadmin2/') ?>css/sb-admin-2.min.css" rel="stylesheet">
     <link href="<?= base_url('assets/sbadmin2/') ?>vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <script src="<?= base_url('assets/sbadmin2/') ?>vendor/jquery/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     <script src="<?= base_url('assets/sbadmin2/') ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
@@ -117,7 +119,7 @@ $session = $this->auth_user_model->get($this->session->userdata('email'));
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $session->nama ?></span>
-                                <img class="img-profile rounded-circle" src="<?= base_url('assets/img/auth/foto/thumb/cropped/'.$session->foto) ?>">
+                                <img class="img-profile rounded-circle" src="<?= base_url('assets/img/auth/foto/thumb/cropped/' . $session->foto) ?>">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -175,6 +177,14 @@ $session = $this->auth_user_model->get($this->session->userdata('email'));
     <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content" id="isiModal">
+                ...
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalLg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content" id="isiModalLg">
                 ...
             </div>
         </div>

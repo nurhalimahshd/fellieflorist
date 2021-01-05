@@ -24,8 +24,8 @@
                         <a onclick="hapus(<?= $kategori->id ?>)" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Hapus</a>
                     </td>
                 </tr>
-            <?php }
-            $no++; ?>
+            <?php $no++; }
+             ?>
         </tbody>
     </table>
 </div>
@@ -44,6 +44,7 @@
 
         Swal.fire({
             title: 'Hapus data ini?',
+            text: 'Seluruh produk dalam kategori ini akan ikut terhapus!',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',

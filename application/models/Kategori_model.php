@@ -8,6 +8,7 @@ class kategori_model extends CI_Model
 
     public function list()
     {
+        $this->db->order_by('id', 'desc');          
         return $this->db->get('kategori')->result();
     }
 
@@ -33,8 +34,7 @@ class kategori_model extends CI_Model
     public function hapus($id)
     {
         $this->db->where('id', $id);
-        return $this->db->delete('kategori');
-        
+        return $this->db->delete('kategori');     
         
     }
 

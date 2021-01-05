@@ -18,10 +18,10 @@
             ?>
                 <tr>
                     <td><?= $no ?></td>
-                    <td><a href="#" onclick="gambar(<?= $produk->id ?>)"><img src="<?= base_url('assets/img/upload/'.$produk->gambar) ?>"  class=" img-fluid img-thumbnail" width="150px" alt=""></a></td>
+                    <td><a href="#" onclick="gambar(<?= $produk->id ?>)"><img src="<?= base_url('assets/img/upload/produk/thumb/cropped/'.$produk->gambar) ?>"  class=" img-fluid img-thumbnail" width="150px" alt=""></a></td>
                     <td><?= $produk->nama ?></td>
                     <td><?= $produk->kategori ?></td>
-                    <td><?= $produk->harga ?></td>
+                    <td>Rp <?= number_format($produk->harga,0,',','.') ?></td>
                     <td><?= $produk->status ?></td>
                     <td>
                         <a onclick="edit(<?= $produk->id ?>)" class="btn btn-sm btn-success"><i class="fa fa-edit"></i> Edit</a>
@@ -78,6 +78,7 @@
 
     function gambar(id)
     {
-        alert(id);
+        $('#isiModalLg').load(base_url + 'auth/produk/gambar/' + id)
+        $('#modalLg').modal('show');
     }
 </script>

@@ -57,7 +57,7 @@ if ($this->session->userdata('email') != '') {
                                     </div>
                                     <form class="user">
                                         <div class="form-group">
-                                            <input type="email" id="email" class="form-control form-control-user" placeholder="Enter Email..." autocomplete="off">
+                                            <input type="text" id="email" class="form-control form-control-user" placeholder="Enter Email..." autocomplete="off">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" id="password" class="form-control form-control-user" placeholder="Password" autocomplete="off">

@@ -17,8 +17,13 @@ class login extends CI_Controller
     public function proses()
     {
         if ($this->input->is_ajax_request()) {
-            $this->form_validation->set_rules('email', 'Email', 'trim|required');
-            $this->form_validation->set_rules('password', 'Password', 'trim|required');
+            $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email',[
+                'valid_email'   => 'Email tidak valid',
+                'required'  => 'Masukkan email'
+            ]);
+            $this->form_validation->set_rules('password', 'Password', 'trim|required',[
+                'required'  => 'Masukkan password'
+            ]);
 
 
             if ($this->form_validation->run() == FALSE) {

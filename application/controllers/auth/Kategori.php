@@ -44,25 +44,36 @@ class kategori extends CI_Controller
     public function p_tambah()
     {
         if ($this->input->is_ajax_request()) {
-            $nama = $this->input->post('nama');
-            $post = [
-                'slug'  => slug($nama),
-                'nama'  => $nama
-            ];
 
-            $proses = $this->kategori_model->input($post);
-            if ($proses) {
-                $data = [
-                    'respond'   => 'success',
-                    'title' => 'Berhasil!',
-                    'message'   => 'Berhasil menambahkan data'
-                ];
-            } else {
+            $this->form_validation->set_rules('nama', 'Nama Kategori', 'trim|required');
+
+            if ($this->form_validation->run() == FALSE) {
                 $data = [
                     'respond'   => 'error',
                     'title' => 'Gagal!',
-                    'message'   => 'Gagal menambahkan data'
+                    'message'   => 'Form tidak boleh ada yang kosong'
                 ];
+            } else {
+                $nama = $this->input->post('nama');
+                $post = [
+                    'slug'  => slug($nama),
+                    'nama'  => $nama
+                ];
+
+                $proses = $this->kategori_model->input($post);
+                if ($proses) {
+                    $data = [
+                        'respond'   => 'success',
+                        'title' => 'Berhasil!',
+                        'message'   => 'Berhasil menambahkan data'
+                    ];
+                } else {
+                    $data = [
+                        'respond'   => 'error',
+                        'title' => 'Gagal!',
+                        'message'   => 'Gagal menambahkan data'
+                    ];
+                }
             }
         } else {
             redirect('auth/kategori', 'refresh');
@@ -73,8 +84,9 @@ class kategori extends CI_Controller
     public function hapus($id)
     {
         if ($this->input->is_ajax_request()) {
-            $proses = $this->kategori_model->hapus($id);
-            if ($proses) {
+            $this->upload_config->hapus_kategori($id);
+            if ($this->kategori_model->hapus($id)) {
+
                 $data = [
                     'respond'   => 'success',
                     'title' => 'Berhasil!',
@@ -95,16 +107,15 @@ class kategori extends CI_Controller
 
     public function h_edit($id)
     {
-        if($this->input->is_ajax_request()){
+        if ($this->input->is_ajax_request()) {
             $kategori = $this->kategori_model->get($id);
             $data = [
-                'title' => 'Edit Kategori '.$kategori->nama,
+                'title' => 'Edit Kategori ' . $kategori->nama,
                 'content'   => 'auth/kategori/edit',
                 'kategori'  => $kategori
             ];
             $this->load->view('auth/template/modal', $data, FALSE);
-            
-        }else{
+        } else {
             redirect('auth/kategori', 'refresh');
         }
     }
@@ -112,25 +123,39 @@ class kategori extends CI_Controller
     public function p_edit($id)
     {
         if ($this->input->is_ajax_request()) {
-            $nama = $this->input->post('nama');
-            $post = [
-                'slug'  => slug($nama),
-                'nama'  => $nama
-            ];
+            $this->form_validation->set_rules('nama', 'Nama Kategori', 'trim|required');
 
-            $proses = $this->kategori_model->edit($id, $post);
-            if ($proses) {
-                $data = [
-                    'respond'   => 'success',
-                    'title' => 'Berhasil!',
-                    'message'   => 'Berhasil memperbarui data'
-                ];
-            } else {
+
+            if ($this->form_validation->run() == FALSE) {
                 $data = [
                     'respond'   => 'error',
                     'title' => 'Gagal!',
-                    'message'   => 'Gagal memperbarui data'
+                    'message'   => 'Form tidak boleh ada yang kosong'
                 ];
+            } else {
+
+
+
+                $nama = $this->input->post('nama');
+                $post = [
+                    'slug'  => slug($nama),
+                    'nama'  => $nama
+                ];
+
+                $proses = $this->kategori_model->edit($id, $post);
+                if ($proses) {
+                    $data = [
+                        'respond'   => 'success',
+                        'title' => 'Berhasil!',
+                        'message'   => 'Berhasil memperbarui data'
+                    ];
+                } else {
+                    $data = [
+                        'respond'   => 'error',
+                        'title' => 'Gagal!',
+                        'message'   => 'Gagal memperbarui data'
+                    ];
+                }
             }
         } else {
             redirect('auth/kategori', 'refresh');
